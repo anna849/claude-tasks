@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate One-Pager</title>
+  <style>
+    :root {
+      --brand: #1a56db;
+      --brand-light: #ebf0ff;
+      --danger: #e02424;
+      --danger-light: #fef2f2;
+      --success: #057a55;
+      --success-light: #f0fdf4;
+      --warn: #c27803;
+      --warn-light: #fffbeb;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -1px rgba(0,0,0,.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--gray-100);
+      color: var(--gray-800);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-logo {
+      width: 32px; height: 32px;
+      background: var(--brand);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 16px;
+    }
+    .topbar-title { font-weight: 600; font-size: 15px; color: var(--gray-800); }
+    .topbar-right { display: flex; gap: 8px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      border: 1px solid transparent; transition: all .15s;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--brand); color: white; border-color: var(--brand); }
+    .btn-primary:hover { background: #1447c0; }
+    .btn-ghost { background: transparent; color: var(--gray-600); border-color: var(--gray-300); }
+    .btn-ghost:hover { background: var(--gray-50); }
+    .btn-danger-ghost { background: transparent; color: var(--danger); border-color: transparent; }
+    .btn-danger-ghost:hover { background: var(--danger-light); }
+    .btn-sm { padding: 4px 10px; font-size: 12px; }
+    .btn-icon { padding: 5px 8px; }
+
+    /* ── LAYOUT ── */
+    .wrapper { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    /* ── SECTION CARD ── */
+    .card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--gray-50);
+    }
+    .card-header-left { display: flex; align-items: center; gap: 10px; }
+    .section-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .icon-blue { background: var(--brand-light); }
+    .icon-green { background: var(--success-light); }
+    .icon-red { background: var(--danger-light); }
+    .icon-yellow { background: var(--warn-light); }
+    .icon-gray { background: var(--gray-100); }
+    .section-title { font-weight: 600; font-size: 14px; color: var(--gray-800); }
+    .card-body { padding: 20px; }
+
+    /* ── FIELDS ── */
+    label { display: block; font-size: 12px; font-weight: 500; color: var(--gray-500); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .04em; }
+    input[type="text"], textarea, select {
+      width: 100%; padding: 8px 10px;
+      border: 1px solid var(--gray-300); border-radius: 6px;
+      font-size: 14px; color: var(--gray-800);
+      background: white; font-family: inherit;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(26,86,219,.1);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .field-group { margin-bottom: 16px; }
+    .field-group:last-child { margin-bottom: 0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+    /* ── BULLET LIST EDITOR ── */
+    .bullet-list { display: flex; flex-direction: column; gap: 8px; }
+    .bullet-item {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .bullet-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot-green { background: var(--success); }
+    .dot-red { background: var(--danger); }
+    .bullet-item input {
+      flex: 1;
+    }
+    .remove-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--gray-400); font-size: 16px; line-height: 1;
+      padding: 2px 4px; border-radius: 4px; flex-shrink: 0;
+    }
+    .remove-btn:hover { color: var(--danger); background: var(--danger-light); }
+    .add-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: none; border: 1px dashed var(--gray-300);
+      border-radius: 6px; color: var(--gray-500);
+      font-size: 13px; padding: 6px 12px; cursor: pointer;
+      width: 100%; justify-content: center; margin-top: 8px;
+      transition: all .15s;
+    }
+    .add-btn:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
+
+    /* ── SCORECARD TABLE ── */
+    .scorecard-table { width: 100%; border-collapse: collapse; }
+    .scorecard-table th {
+      text-align: left; padding: 8px 10px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--gray-500);
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--gray-50);
+    }
+    .scorecard-table td {
+      padding: 8px 10px; border-bottom: 1px solid var(--gray-100);
+      vertical-align: middle;
+    }
+    .scorecard-table tr:last-child td { border-bottom: none; }
+    .scorecard-table tr.composite-row td { border-top: 2px solid var(--gray-200); font-weight: 600; background: var(--gray-50); }
+    .scorecard-table td:first-child { font-weight: 500; color: var(--gray-700); white-space: nowrap; }
+
+    /* Star rating */
+    .star-rating { display: flex; gap: 3px; align-items: center; }
+    .star-rating input[type="radio"] { display: none; }
+    .star-rating label {
+      font-size: 20px; cursor: pointer; color: var(--gray-300);
+      text-transform: none; letter-spacing: 0; margin: 0;
+      transition: color .1s;
+      user-select: none;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label { color: var(--gray-300); }
+    .star-rating input[type="radio"]:checked ~ label { color: var(--gray-300); }
+    .star-rating label:hover,
+    .star-rating:not(:has(input:checked)) label:hover,
+    .star-rating:not(:has(input:checked)) label:hover ~ label { }
+
+    /* Simpler approach — JS-driven stars */
+    .stars { display: flex; gap: 2px; cursor: pointer; }
+    .star { font-size: 20px; color: var(--gray-300); transition: color .1s; line-height: 1; }
+    .star.active { color: #f59e0b; }
+    .star:hover { transform: scale(1.15); }
+
+    .rating-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 26px; height: 26px; border-radius: 6px;
+      font-weight: 700; font-size: 13px; padding: 0 6px;
+    }
+    .r0 { background: var(--gray-100); color: var(--gray-400); }
+    .r1 { background: #fee2e2; color: #991b1b; }
+    .r2 { background: #fed7aa; color: #9a3412; }
+    .r3 { background: #fef9c3; color: #854d0e; }
+    .r4 { background: #dcfce7; color: #166534; }
+    .r5 { background: #bbf7d0; color: #14532d; }
+
+    .sc-notes input { font-size: 13px; padding: 6px 8px; }
+
+    /* ── ROUNDS ── */
+    .round-card {
+      border: 1px solid var(--gray-200); border-radius: var(--radius);
+      margin-bottom: 16px; overflow: hidden;
+    }
+    .round-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--brand-light);
+      border-bottom: 1px solid #c7d7f7;
+    }
+    .round-header-left { display: flex; align-items: center; gap: 10px; }
+    .round-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--brand); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+    }
+    .round-body { padding: 16px; }
+
+    /* ── RATING KEY ── */
+    .rating-key {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 12px 20px; background: var(--gray-50);
+      border-top: 1px solid var(--gray-200);
+    }
+    .key-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--gray-600); }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; font-size: 12px; }
+      .topbar, .add-btn, .remove-btn, .btn, .no-print { display: none !important; }
+      .wrapper { padding: 10px 0; max-width: 100%; }
+      .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12px; }
+      input, textarea, select {
+        border: none; padding: 0;
+        background: transparent;
+        -webkit-appearance: none;
+      }
+      .stars .star { color: var(--gray-400) !important; }
+      .star.active { color: #f59e0b !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo">C</div>
+    <span class="topbar-title">Candidate One-Pager</span>
+  </div>
+  <div class="topbar-right">
+    <button class="btn btn-ghost" onclick="window.print()">
+      &#128438; Print / Export PDF
+    </button>
+    <button class="btn btn-primary" onclick="saveToLocalStorage()">
+      &#128190; Save
+    </button>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <!-- ── 1. CANDIDATE SUMMARY ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="section-icon icon-blue">&#128100;</div>
+        <span class="section-title">Candidate Summary</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="field-row" style="margin-bottom:16px">
+        <div class="field-group">
+          <label>Candidate Name</label>
+          <input type="text" id="f-name" placeholder="Jane Smith" />
+        </div>
+        <div class="field-group">
+          <label>Target Role</label>
+          <input type="text" id="f-role" placeholder="Senior Software Engineer" />
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom:16px">
+        <div class="field-group">
+          <label>Current Title</label>
+          <input type="text" id="f-title" placeholder="Staff Engineer" />
+        </div>
+        <div class="field-group">
+          <label>Current Company</label>
+          <input type="text" id="f-company" placeholder="Acme Corp" />
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom:16px">
+        <div class="field-group">
+          <label>Years of Experience</label>
+          <input type="text" id="f-yoe" placeholder="8 years" />
+        </div>
+        <div class="field-group">
+          <label>Education</label>
+          <input type="text" id="f-edu" placeholder="B.S. Computer Science — MIT, 2016" />
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom:16px">
+        <div class="field-group">
+          <label>Recruiting Stage</label>
+          <input type="text" id="f-stage" placeholder="e.g. Final Round (3 of 4 interviews complete)" />
+        </div>
+        <div class="field-group">
+          <label>Interview Date(s)</label>
+          <input type="text" id="f-dates" placeholder="April 15, 2026" />
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Recruiter / Coordinator</label>
+        <input type="text" id="f-recruiter" placeholder="Alex Johnson (alex@company.com)" />
+      </div>
+      <div class="field-group" style="margin-top:16px">
+        <label>Bio / Overview</label>
+        <textarea id="f-bio" placeholder="2–3 sentences summarizing the candidate's career arc, domain expertise, and what brought them to this opportunity..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. STRENGTHS & AREAS OF CONCERN ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="section-icon icon-green">&#9650;</div>
+        <span class="section-title">Strengths &amp; Areas of Concern</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="field-row">
+
+        <!-- Strengths -->
+        <div>
+          <label style="margin-bottom:10px;display:flex;align-items:center;gap:6px">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--success);display:inline-block"></span>
+            Strengths
+          </label>
+          <div class="bullet-list" id="strengths-list"></div>
+          <button class="add-btn" onclick="addBullet('strengths-list','strength')">+ Add strength</button>
+        </div>
+
+        <!-- Concerns -->
+        <div>
+          <label style="margin-bottom:10px;display:flex;align-items:center;gap:6px">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--danger);display:inline-block"></span>
+            Areas of Concern / Open Questions
+          </label>
+          <div class="bullet-list" id="concerns-list"></div>
+          <button class="add-btn" onclick="addBullet('concerns-list','concern')">+ Add concern</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. SCORECARD ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="section-icon icon-yellow">&#9733;</div>
+        <span class="section-title">Interview Scorecard</span>
+      </div>
+    </div>
+    <table class="scorecard-table">
+      <thead>
+        <tr>
+          <th>Competency</th>
+          <th>Rating</th>
+          <th style="width:40%">Notes</th>
+          <th>Assessed By</th>
+        </tr>
+      </thead>
+      <tbody id="scorecard-body"></tbody>
+    </table>
+    <div class="rating-key">
+      <strong style="font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.05em;margin-right:4px">Key:</strong>
+      <div class="key-item"><span class="rating-badge r1">1</span> Strong No Hire</div>
+      <div class="key-item"><span class="rating-badge r2">2</span> No Hire</div>
+      <div class="key-item"><span class="rating-badge r3">3</span> Neutral</div>
+      <div class="key-item"><span class="rating-badge r4">4</span> Hire</div>
+      <div class="key-item"><span class="rating-badge r5">5</span> Strong Hire</div>
+      <div class="key-item"><span class="rating-badge r0">—</span> Not Assessed</div>
+    </div>
+  </div>
+
+  <!-- ── 4. RECOMMENDED FOCUS AREAS ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="section-icon icon-blue">&#127919;</div>
+        <span class="section-title">Recommended Interview Focus Areas</span>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="addRound()">+ Add Round</button>
+    </div>
+    <div class="card-body">
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">
+        Guide each upcoming interviewer on where to spend their time based on prior rounds and remaining open questions.
+      </p>
+      <div id="rounds-container"></div>
+    </div>
+  </div>
+
+  <!-- ── 5. GENERAL NOTES ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="section-icon icon-gray">&#128221;</div>
+        <span class="section-title">General Notes</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <textarea id="f-notes" style="min-height:120px" placeholder="Any additional context: competing offers, preferred start date, compensation notes, observations from recruiter screen, etc."></textarea>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:var(--gray-400);margin-top:8px" class="no-print">
+    Auto-saved to browser &mdash; use <strong>Print / Export PDF</strong> to share
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+
+const COMPETENCIES = [
+  "Technical Skills / Coding",
+  "Problem Solving & Analytical Thinking",
+  "System Design",
+  "Communication & Clarity",
+  "Collaboration & Culture Fit",
+  "Leadership & Ownership",
+  "Domain / Industry Knowledge",
+];
+
+// ── SCORECARD ────────────────────────────────────────────────────────────────
+
+function ratingBadge(val) {
+  const label = val === 0 ? "—" : val;
+  return `<span class="rating-badge r${val}">${label}</span>`;
+}
+
+function buildScorecard() {
+  const tbody = document.getElementById("scorecard-body");
+  tbody.innerHTML = "";
+
+  COMPETENCIES.forEach((comp, i) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${comp}</td>
+      <td style="white-space:nowrap">
+        <div class="stars" id="stars-${i}" data-val="0" data-idx="${i}">
+          ${[1,2,3,4,5].map(n => `<span class="star" data-n="${n}">&#9733;</span>`).join("")}
+          <span id="badge-${i}" style="margin-left:6px">${ratingBadge(0)}</span>
+        </div>
+      </td>
+      <td class="sc-notes"><input type="text" placeholder="Add notes…" data-key="sc-notes-${i}" /></td>
+      <td><input type="text" placeholder="Interviewer" data-key="sc-by-${i}" style="min-width:110px" /></td>
+    `;
+    tbody.appendChild(row);
+
+    // wire up stars
+    const starsEl = document.getElementById(`stars-${i}`);
+    starsEl.querySelectorAll(".star").forEach(star => {
+      star.addEventListener("click", () => {
+        const n = parseInt(star.dataset.n);
+        const prev = parseInt(starsEl.dataset.val);
+        const newVal = (prev === n) ? 0 : n; // toggle off if same
+        starsEl.dataset.val = newVal;
+        renderStars(i, newVal);
+        autosave();
+      });
+      star.addEventListener("mouseenter", () => hoverStars(i, parseInt(star.dataset.n)));
+      star.addEventListener("mouseleave", () => renderStars(i, parseInt(starsEl.dataset.val)));
+    });
+  });
+
+  // Composite row
+  const compRow = document.createElement("tr");
+  compRow.className = "composite-row";
+  compRow.innerHTML = `
+    <td>Overall Composite</td>
+    <td><span id="composite-badge">${ratingBadge(0)}</span></td>
+    <td colspan="2" style="font-size:12px;color:var(--gray-400)" id="composite-label">Avg of assessed competencies</td>
+  `;
+  tbody.appendChild(compRow);
+}
+
+function renderStars(idx, val) {
+  const starsEl = document.getElementById(`stars-${idx}`);
+  starsEl.querySelectorAll(".star").forEach(s => {
+    s.classList.toggle("active", parseInt(s.dataset.n) <= val);
+  });
+  document.getElementById(`badge-${idx}`).innerHTML = ratingBadge(val);
+  updateComposite();
+}
+
+function hoverStars(idx, hoverVal) {
+  const starsEl = document.getElementById(`stars-${idx}`);
+  starsEl.querySelectorAll(".star").forEach(s => {
+    s.classList.toggle("active", parseInt(s.dataset.n) <= hoverVal);
+  });
+}
+
+function updateComposite() {
+  const vals = COMPETENCIES.map((_, i) => {
+    const el = document.getElementById(`stars-${i}`);
+    return el ? parseInt(el.dataset.val) : 0;
+  }).filter(v => v > 0);
+
+  const badge = document.getElementById("composite-badge");
+  const label = document.getElementById("composite-label");
+  if (vals.length === 0) {
+    badge.innerHTML = ratingBadge(0);
+    label.textContent = "Avg of assessed competencies";
+  } else {
+    const avg = Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+    badge.innerHTML = ratingBadge(avg);
+    const labels = ["","Strong No Hire","No Hire","Neutral","Hire","Strong Hire"];
+    label.textContent = `Avg ${(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1)} across ${vals.length} assessed competencies → ${labels[avg]}`;
+  }
+}
+
+// ── BULLET LISTS ─────────────────────────────────────────────────────────────
+
+function addBullet(listId, type, value = "") {
+  const list = document.getElementById(listId);
+  const item = document.createElement("div");
+  item.className = "bullet-item";
+  const dotColor = type === "strength" ? "dot-green" : "dot-red";
+  item.innerHTML = `
+    <span class="bullet-dot ${dotColor}"></span>
+    <input type="text" placeholder="${type === 'strength' ? 'e.g. Strong systems design fundamentals' : 'e.g. Limited experience with core tech stack'}" value="${escHtml(value)}" oninput="autosave()" />
+    <button class="remove-btn" onclick="this.parentElement.remove(); autosave()" title="Remove">&#215;</button>
+  `;
+  list.appendChild(item);
+}
+
+// ── ROUNDS ───────────────────────────────────────────────────────────────────
+
+let roundCount = 0;
+
+function addRound(data = {}) {
+  roundCount++;
+  const n = roundCount;
+  const container = document.getElementById("rounds-container");
+  const div = document.createElement("div");
+  div.className = "round-card";
+  div.id = `round-${n}`;
+  div.innerHTML = `
+    <div class="round-header">
+      <div class="round-header-left">
+        <div class="round-num">${n}</div>
+        <input type="text" data-key="round-name-${n}" value="${escHtml(data.name||"")}" placeholder="Round name — e.g. System Design" style="background:transparent;border:none;font-weight:600;font-size:14px;color:var(--gray-800);width:260px;padding:2px 6px;border-radius:4px" />
+        <span style="color:var(--gray-500);font-size:13px">&nbsp;|&nbsp; Interviewer:</span>
+        <input type="text" data-key="round-interviewer-${n}" value="${escHtml(data.interviewer||"")}" placeholder="Name" style="background:transparent;border:none;font-size:13px;color:var(--gray-700);padding:2px 6px;border-radius:4px;width:160px" />
+      </div>
+      <button class="btn btn-danger-ghost btn-sm" onclick="removeRound(${n})">Remove</button>
+    </div>
+    <div class="round-body">
+      <div class="field-row" style="margin-bottom:14px">
+        <div class="field-group">
+          <label>Goal of this round</label>
+          <input type="text" data-key="round-goal-${n}" value="${escHtml(data.goal||"")}" placeholder="e.g. Assess distributed systems depth" oninput="autosave()" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div>
+          <label style="margin-bottom:10px">Suggested focus areas</label>
+          <div class="bullet-list" id="round-focus-${n}"></div>
+          <button class="add-btn" onclick="addRoundBullet('round-focus-${n}','focus')">+ Add focus area</button>
+        </div>
+        <div>
+          <label style="margin-bottom:10px">Topics already covered (skip these)</label>
+          <div class="bullet-list" id="round-covered-${n}"></div>
+          <button class="add-btn" onclick="addRoundBullet('round-covered-${n}','covered')">+ Add covered topic</button>
+        </div>
+      </div>
+    </div>
+  `;
+  container.appendChild(div);
+
+  // pre-populate bullets
+  (data.focus||[]).forEach(v => addRoundBullet(`round-focus-${n}`, "focus", v));
+  (data.covered||[]).forEach(v => addRoundBullet(`round-covered-${n}`, "covered", v));
+
+  // wire inputs for autosave
+  div.querySelectorAll("input[data-key], textarea[data-key]").forEach(el => {
+    el.addEventListener("input", autosave);
+  });
+}
+
+function addRoundBullet(listId, type, value = "") {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  const item = document.createElement("div");
+  item.className = "bullet-item";
+  const placeholder = type === "focus"
+    ? "e.g. Probe on caching strategies for read-heavy workloads"
+    : "e.g. General coding ability — assessed in phone screen";
+  item.innerHTML = `
+    <span class="bullet-dot" style="background:${type==='focus'?'var(--brand)':'var(--gray-400)'}"></span>
+    <input type="text" placeholder="${placeholder}" value="${escHtml(value)}" oninput="autosave()" />
+    <button class="remove-btn" onclick="this.parentElement.remove(); autosave()" title="Remove">&#215;</button>
+  `;
+  list.appendChild(item);
+}
+
+function removeRound(n) {
+  const el = document.getElementById(`round-${n}`);
+  if (el) { el.remove(); autosave(); }
+}
+
+// ── PERSISTENCE ──────────────────────────────────────────────────────────────
+
+function escHtml(str) {
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function collectData() {
+  const fields = ["name","role","title","company","yoe","edu","stage","dates","recruiter","bio","notes"];
+  const out = { fields: {}, strengths: [], concerns: [], scorecard: [], rounds: [] };
+
+  fields.forEach(k => {
+    const el = document.getElementById(`f-${k}`);
+    out.fields[k] = el ? el.value : "";
+  });
+
+  document.querySelectorAll("#strengths-list .bullet-item input").forEach(el => out.strengths.push(el.value));
+  document.querySelectorAll("#concerns-list .bullet-item input").forEach(el => out.concerns.push(el.value));
+
+  COMPETENCIES.forEach((_, i) => {
+    const starsEl = document.getElementById(`stars-${i}`);
+    const notesEl = document.querySelector(`input[data-key="sc-notes-${i}"]`);
+    const byEl = document.querySelector(`input[data-key="sc-by-${i}"]`);
+    out.scorecard.push({
+      val: starsEl ? parseInt(starsEl.dataset.val) : 0,
+      notes: notesEl ? notesEl.value : "",
+      by: byEl ? byEl.value : "",
+    });
+  });
+
+  document.querySelectorAll(".round-card").forEach(rc => {
+    const n = rc.id.replace("round-","");
+    const focus = [], covered = [];
+    rc.querySelectorAll(`#round-focus-${n} input`).forEach(el => focus.push(el.value));
+    rc.querySelectorAll(`#round-covered-${n} input`).forEach(el => covered.push(el.value));
+    out.rounds.push({
+      name: (rc.querySelector(`input[data-key="round-name-${n}"]`)||{}).value || "",
+      interviewer: (rc.querySelector(`input[data-key="round-interviewer-${n}"]`)||{}).value || "",
+      goal: (rc.querySelector(`input[data-key="round-goal-${n}"]`)||{}).value || "",
+      focus, covered,
+    });
+  });
+
+  return out;
+}
+
+function restoreData(out) {
+  if (!out) return;
+  const { fields, strengths, concerns, scorecard, rounds } = out;
+
+  // fields
+  Object.entries(fields||{}).forEach(([k,v]) => {
+    const el = document.getElementById(`f-${k}`);
+    if (el) el.value = v;
+  });
+
+  // bullets
+  (strengths||[]).forEach(v => addBullet("strengths-list","strength", v));
+  (concerns||[]).forEach(v => addBullet("concerns-list","concern", v));
+
+  // scorecard
+  (scorecard||[]).forEach((sc, i) => {
+    if (sc.val) {
+      const starsEl = document.getElementById(`stars-${i}`);
+      if (starsEl) { starsEl.dataset.val = sc.val; renderStars(i, sc.val); }
+    }
+    const notesEl = document.querySelector(`input[data-key="sc-notes-${i}"]`);
+    if (notesEl) notesEl.value = sc.notes || "";
+    const byEl = document.querySelector(`input[data-key="sc-by-${i}"]`);
+    if (byEl) byEl.value = sc.by || "";
+  });
+
+  // rounds
+  (rounds||[]).forEach(r => addRound(r));
+}
+
+function autosave() {
+  try { localStorage.setItem("candidate-one-pager", JSON.stringify(collectData())); } catch(e) {}
+}
+
+function saveToLocalStorage() {
+  autosave();
+  const btn = document.querySelector(".btn-primary");
+  const orig = btn.innerHTML;
+  btn.innerHTML = "&#10003; Saved!";
+  btn.style.background = "var(--success)";
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ""; }, 1500);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildScorecard();
+
+  // wire field autosave
+  document.querySelectorAll("input[id^='f-'], textarea[id^='f-']").forEach(el => {
+    el.addEventListener("input", autosave);
+  });
+
+  // restore saved data or seed default bullets
+  const saved = localStorage.getItem("candidate-one-pager");
+  if (saved) {
+    try { restoreData(JSON.parse(saved)); return; } catch(e) {}
+  }
+
+  // defaults
+  addBullet("strengths-list","strength");
+  addBullet("strengths-list","strength");
+  addBullet("concerns-list","concern");
+  addBullet("concerns-list","concern");
+  addRound();
+  addRound();
+});
+</script>
+</body>
+</html>
